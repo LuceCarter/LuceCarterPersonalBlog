@@ -1,13 +1,13 @@
-﻿@inherits LayoutComponentBase
+@inherits LayoutComponentBase
 
 <MudThemeProvider Theme="@_theme" IsDarkMode="_isDarkMode" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 <MudLayout>
-    <MudAppBar Elevation="1">
+    <MudAppBar Elevation="1" >
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        <MudText Typo="Typo.h5" Class="ml-3">Application</MudText>
+        <MudText Typo="Typo.h5" Class="ml-3">Luce Carter</MudText>
         <MudSpacer />
         <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
         <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
@@ -38,9 +38,75 @@
 
         _theme = new()
         {
+            Typography = new Typography()
+            {
+                Default = new DefaultTypography()
+                {
+                    FontFamily = new[] { "Soleil", "sans-serif" }
+             
+                },
+                H1 = new H1Typography()
+                {
+                    FontFamily = new[] { "Soleil", "sans-serif" }
+               
+                },
+                H2 = new H2Typography()
+                {
+                    FontFamily = new[] { "Soleil", "sans-serif" }
+                
+                },
+                H3 = new H3Typography()
+                {
+                    FontFamily = new[] { "Soleil", "sans-serif" }
+                   
+                },
+                H4 = new H4Typography()
+                {
+                    FontFamily = new[] { "Soleil", "sans-serif" }
+               
+                },
+                H5 = new H5Typography()
+                {
+                    FontFamily = new[] { "Soleil", "sans-serif" }
+             
+                },
+                H6 = new H6Typography()
+                {
+                    FontFamily = new[] { "Soleil", "sans-serif" }
+                },
+                Body1 = new Body1Typography()
+                {
+                    FontFamily = new[] { "Soleil", "sans-serif" }
+                },
+                Body2 = new Body2Typography()
+                {
+                    FontFamily = new[] { "Soleil", "sans-serif" }
+                },
+                Button = new ButtonTypography()
+                {
+                    FontFamily = new[] { "Soleil", "sans-serif" }
+                },
+                Caption = new CaptionTypography()
+                {
+                    FontFamily = new[] { "Soleil", "sans-serif" }
+                },
+                Subtitle1 = new Subtitle1Typography()
+                {
+                    FontFamily = new[] { "Soleil", "sans-serif" }
+                },
+                Subtitle2 = new Subtitle2Typography()
+                {
+                    FontFamily = new[] { "Soleil", "sans-serif" }        
+                }
+            },
             PaletteLight = _lightPalette,
             PaletteDark = _darkPalette,
-            LayoutProperties = new LayoutProperties()
+            LayoutProperties = new LayoutProperties
+            {
+                DefaultBorderRadius = "4px",
+                DrawerWidthLeft = "260px",
+                DrawerWidthRight = "300px"
+            }
         };
     }
 
@@ -54,43 +120,67 @@
         _isDarkMode = !_isDarkMode;
     }
 
+    // Light palette - based on brand guidelines
     private readonly PaletteLight _lightPalette = new()
     {
-        Black = "#110e2d",
-        AppbarText = "#424242",
-        AppbarBackground = "rgba(255,255,255,0.8)",
-        DrawerBackground = "#ffffff",
-        GrayLight = "#e8e8e8",
-        GrayLighter = "#f9f9f9",
+        Primary = "#F9A01B", // Orange
+        Secondary = "#F47E24", // Deep Orange
+        Tertiary = "#FFD54C", // Sunny Yellow
+        Black = "#323E48", // Navy
+        Background = "#F5F5F5",
+        Surface = "#FFFFFF",
+        AppbarText = "#323E48", // Navy
+        AppbarBackground = "#F9A01B", // Orange
+        DrawerBackground = "#FFFFFF",
+        GrayLight = "#B7BABF", // Navy 25%
+        GrayLighter = "#FFE4C1", // Orange 25% 
+        TextPrimary = "#323E48", // Navy
+        TextSecondary = "#575F69", // Navy 75%
+        DrawerIcon = "#575F69", // Navy 75%
+        DrawerText = "#323E48", // Navy
+        Info = "#838890", // Navy 50%
+        Success = "#3dcb6c",
+        Warning = "#FCB658", // Orange 75%
+        Error = "#ff3f5f",
+        ActionDefault = "#323E48", // Navy
+        ActionDisabled = "#B7BABF80", // Navy 25% with opacity
+        ActionDisabledBackground = "#F5F5F580",
+        HoverOpacity = 0.08,
+        Divider = "#323E4840", // Navy at 25% opacity (for divider rules)
+        DividerLight = "#F5F5F5"
     };
 
+    // Dark palette - based on brand guidelines but adapted for dark mode
     private readonly PaletteDark _darkPalette = new()
     {
-        Primary = "#7e6fff",
-        Surface = "#1e1e2d",
-        Background = "#1a1a27",
-        BackgroundGray = "#151521",
-        AppbarText = "#92929f",
-        AppbarBackground = "rgba(26,26,39,0.8)",
-        DrawerBackground = "#1a1a27",
-        ActionDefault = "#74718e",
+        Primary = "#F9A01B", // Orange
+        Secondary = "#F47E24", // Deep Orange
+        Tertiary = "#FFD54C", // Sunny Yellow
+        Surface = "#323E48", // Navy
+        Background = "#232930", // Darker than Navy
+        BackgroundGray = "#1C2228", // Even darker
+        AppbarText = "#FFFFFF",
+        AppbarBackground = "#F9A01B", // Orange
+        DrawerBackground = "#323E48", // Navy
+        ActionDefault = "#838890", // Navy 50%
         ActionDisabled = "#9999994d",
-        ActionDisabledBackground = "#605f6d4d",
-        TextPrimary = "#b2b0bf",
-        TextSecondary = "#92929f",
+        ActionDisabledBackground = "#575F6980", // Navy 75% with opacity
+        TextPrimary = "#B7BABF", // Navy 25%
+        TextSecondary = "#838890", // Navy 50% 
         TextDisabled = "#ffffff33",
-        DrawerIcon = "#92929f",
-        DrawerText = "#92929f",
-        GrayLight = "#2a2833",
-        GrayLighter = "#1e1e2d",
-        Info = "#4a86ff",
+        DrawerIcon = "#B7BABF", // Navy 25%
+        DrawerText = "#B7BABF", // Navy 25%
+        GrayLight = "#575F69", // Navy 75%
+        GrayLighter = "#FFE4C1", // Orange 25%
+        Info = "#838890", // Navy 50%
         Success = "#3dcb6c",
-        Warning = "#ffb545",
+        Warning = "#FCB658", // Orange 75%
         Error = "#ff3f5f",
-        LinesDefault = "#33323e",
-        TableLines = "#33323e",
-        Divider = "#292838",
-        OverlayLight = "#1e1e2d80",
+        LinesDefault = "#575F69", // Navy 75%
+        TableLines = "#575F69", // Navy 75%
+        Divider = "#323E48", // Navy
+        OverlayLight = "#323E4880", // Navy with opacity
+        HoverOpacity = 0.15
     };
 
     public string DarkLightModeButtonIcon => _isDarkMode switch
@@ -99,5 +189,3 @@
         false => Icons.Material.Outlined.DarkMode,
     };
 }
-
-
