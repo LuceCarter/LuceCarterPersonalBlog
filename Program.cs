@@ -1,7 +1,20 @@
+using Contentful.AspNetCore;
 using MudBlazor.Services;
 using LuceCarterPersonalBlog.Components;
+using LuceCarterPersonalBlog.Models;
+using LuceCarterPersonalBlog.Services;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure ContentfulSettings
+builder.Services.AddContentful(builder.Configuration);
+builder.Services.AddScoped<BlogPostService>();
+builder.Services.AddSingleton<HtmlRenderer>();
+
+
+
 
 // Add MudBlazor services
 builder.Services.AddMudServices();
@@ -9,6 +22,7 @@ builder.Services.AddMudServices();
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
 
 var app = builder.Build();
 
